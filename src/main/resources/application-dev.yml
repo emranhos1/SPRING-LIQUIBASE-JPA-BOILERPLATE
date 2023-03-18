@@ -1,0 +1,52 @@
+#######################################################
+## @author   Md. Emran Hossain                       ##
+## @version  1.0                                     ##
+## @since    17 MAR, 2023                            ##
+#######################################################
+
+spring:
+  jackson:
+    serialization:
+      fail-on-empty-beans: false
+  liquibase:
+    change-log: classpath:/db.changelog/db.changelog-master-dev.yml
+    drop-first: false
+    enabled: true
+  datasource:
+    url: jdbc:postgresql://localhost:5432/gc_acl
+    username: postgres
+    password: root
+    driver-class-name: org.postgresql.Driver
+    dbcp2:
+      initial-size: 10
+      max-total: 50
+      min-idle: 2
+
+logging:
+  level:
+    org:
+      springframework:
+        web: DEBUG
+      hibernate:
+        SQL: ERROR
+    com:
+      synesisit:
+        gc-acl: info
+  file:
+    name: C:/log/gc-acl/app.log
+    max-size: 10MB
+    max-history: 0
+  pattern:
+    file: "%d %-5level [%thread] %logger : %msg%n"
+
+springdoc:
+  swagger-ui:
+    path: acl-ui
+    tags-sorter: alpha
+    operations-sorter: alpha
+    docExpansion : none
+  api-docs:
+    path: /acl-docs
+
+acl:
+  url: http://localhost:9001
