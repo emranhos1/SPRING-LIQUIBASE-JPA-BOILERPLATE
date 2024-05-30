@@ -9,12 +9,12 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
-    <groupId>com.eh.gc</groupId>
-    <artifactId>gc-acl</artifactId>
+    <groupId>com.eh.vms</groupId>
+    <artifactId>vms</artifactId>
     <version>0.0.1-SNAPSHOT</version>
 
-    <name>GARBAGE COLLECTOR</name>
-    <description>Spring Boot Project for Garbage Collector</description>
+    <name>VMS</name>
+    <description>Spring Boot Project for VMS</description>
 
     <properties>
         <java.version>11</java.version>
@@ -45,8 +45,8 @@
         </dependency>
 
         <dependency>
-            <groupId>org.postgresql</groupId>
-            <artifactId>postgresql</artifactId>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
             <scope>runtime</scope>
         </dependency>
 

@@ -8,7 +8,7 @@ databaseChangeLog:
   - preConditions:
       or:
         dbms:
-          - type: postgresql
+          - type: mysql
   - property:
       name: now
       value: NOW()

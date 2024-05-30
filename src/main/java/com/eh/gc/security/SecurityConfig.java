@@ -1,6 +1,6 @@
 package com.eh.gc.security;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -25,11 +25,19 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 )
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    @Autowired
-    private JwtAuthenticationEntryPoint unauthorizedHandler;
-    
-    @Autowired
-    private SimpleCrosFilter simpleCorsFilter;
+    @Value("${springdoc.swagger-ui.path}")
+    private String swaggerUiPath;
+
+    @Value("${springdoc.api-docs.path}")
+    private String swaggerDocPath;
+
+    private final JwtAuthenticationEntryPoint unauthorizedHandler;
+    private final SimpleCrosFilter simpleCorsFilter;
+
+    public SecurityConfig(JwtAuthenticationEntryPoint unauthorizedHandler, SimpleCrosFilter simpleCorsFilter) {
+        this.unauthorizedHandler = unauthorizedHandler;
+        this.simpleCorsFilter = simpleCorsFilter;
+    }
 
     @Bean
     public JwtAuthenticationFilter jwtAuthenticationFilter() {
@@ -60,7 +68,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/test")
                 .permitAll()
-                .antMatchers("/acl-docs/**","/acl-ui/**", "/swagger-ui/**")
+                .antMatchers(swaggerDocPath+"/**",swaggerUiPath+"/**", "/swagger-ui/**")
                 .permitAll()
                 .anyRequest()
                 .authenticated();

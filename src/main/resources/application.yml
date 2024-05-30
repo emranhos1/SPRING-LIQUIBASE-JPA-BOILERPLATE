@@ -9,7 +9,7 @@ server:
   tomcat:
     max-threads: 400
   servlet:
-    context-path: /gc/api
+    context-path: /vms/api
 
 spring:
   servlet:
@@ -19,11 +19,11 @@ spring:
   profiles:
     active: dev
   application:
-    name: gc-acl
+    name: vms
   jpa:
     properties:
       hibernate:
-        dialect: org.hibernate.dialect.PostgreSQLDialect
+        dialect: org.hibernate.dialect.MySQLDialect
         temp:
           use-jdbc-metadata-defaults: false
     hibernate:

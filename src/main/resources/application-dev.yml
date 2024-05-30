@@ -10,13 +10,13 @@ spring:
       fail-on-empty-beans: false
   liquibase:
     change-log: classpath:/db.changelog/db.changelog-master-dev.yml
-    drop-first: false
+    drop-first: true
     enabled: true
   datasource:
-    url: jdbc:postgresql://localhost:5432/gc_acl
-    username: postgres
+    url: jdbc:mysql://localhost:3306/vms
+    username: root
     password: root
-    driver-class-name: org.postgresql.Driver
+    driver-class-name: com.mysql.cj.jdbc.Driver
     dbcp2:
       initial-size: 10
       max-total: 50
@@ -33,7 +33,7 @@ logging:
       synesisit:
         gc-acl: info
   file:
-    name: C:/log/gc-acl/app.log
+    name: C:/log/vms/app.log
     max-size: 10MB
     max-history: 0
   pattern:
@@ -41,12 +41,12 @@ logging:
 
 springdoc:
   swagger-ui:
-    path: acl-ui
+    path: vms-ui
     tags-sorter: alpha
     operations-sorter: alpha
     docExpansion : none
   api-docs:
-    path: /acl-docs
+    path: /vms-docs
 
 acl:
-  url: http://localhost:9001
+  url: http://localhost:9090
